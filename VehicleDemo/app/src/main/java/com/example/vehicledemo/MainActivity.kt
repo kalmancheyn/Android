@@ -8,6 +8,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var myCar = Vehicle("abc-123")
+        var myVehicle = Vehicle("abc-123")
+        var myShip = Ship("abc-234", 34)
+
+        println("""
+            myCar: ${myVehicle.showPlateNum()}
+            myShip: ${myShip.showPlateNumAndSize()}
+        """.trimIndent())
     }
 }
