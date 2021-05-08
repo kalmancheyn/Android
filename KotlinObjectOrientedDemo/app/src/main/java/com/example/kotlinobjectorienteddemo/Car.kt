@@ -1,6 +1,6 @@
 package com.example.kotlinobjectorienteddemo
 
-class Car(var plateNumber: String){
+open class Car(var plateNumber: String){
 
     var upperPlateNumber: String = ""
         get() {
@@ -15,6 +15,14 @@ class Car(var plateNumber: String){
         upperPlateNumber = plateNumber.toUpperCase()
     }
 
+    inner class Engine {
+        fun startEngine() {
+            engineNum++
+            showPlateNumber()
+        this@Car.showPlateNumber()
+        }
+    }
+
     constructor(aPlate: String, engineNum: Int): this(aPlate){
         this.engineNum = engineNum
     }
@@ -23,7 +31,7 @@ class Car(var plateNumber: String){
         return upperPlateNumber
     }
 
-    fun showPlateAndEngine(): String {
+    open fun showPlateAndEngine(): String {
         return "$upperPlateNumber, $engineNum"
     }
 

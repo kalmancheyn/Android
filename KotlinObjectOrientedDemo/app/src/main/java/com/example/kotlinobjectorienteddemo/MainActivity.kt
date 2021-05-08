@@ -10,6 +10,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         var myCar = Car("abc-123", 1233112)
+        var myEngine = Car("abc").Engine()
+        myEngine.startEngine()
 
         println(myCar.showPlateAndEngine())
 
