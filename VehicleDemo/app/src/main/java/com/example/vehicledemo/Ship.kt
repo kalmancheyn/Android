@@ -1,10 +1,17 @@
 package com.example.vehicledemo
 
-class Ship(plateNum: String, var size: Int = 0) : Vehicle(plateNum) {
+interface Loadable{
+    fun loadThis()
+}
 
-
-    fun showPlateNumAndSize(): String {
-        return "$plateNum, $size"
+class Ship(var shipManufacturer: String) : Vehicle(shipManufacturer), Loadable {
+    override fun startVehicle() {
+        println("Zászlót fel")
     }
+
+    override fun loadThis() {
+        println("Feltöltve")
+    }
+
 
 }

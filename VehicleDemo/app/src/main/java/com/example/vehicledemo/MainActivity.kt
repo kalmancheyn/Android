@@ -9,8 +9,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val myVehicle = Vehicle("abc-123")
-        val myShip = Ship("abc-234", 34)
+        //var myVehicle = Vehicle("abc-123")
+        val myShip = Ship("VitorlásGyár")
         val myWheeledVehicle = WheeledVehicle("abc-345")
         val myCar = Car("abc-456", "Tesla", "ModelS")
         val myFuelEngine = FuelEngine("abc-567", "Mustang", "GT", "Petrol", 6000)
@@ -18,13 +18,8 @@ class MainActivity : AppCompatActivity() {
 
         tvData.setOnClickListener() {
             tvData.text = """
-            myCar: ${myVehicle.showPlateNum()}
-            myShip: ${myShip.showPlateNumAndSize()}
-            myWheeledVehicle: ${myWheeledVehicle.showPlatenNumAndEngineType()}
-            myCar: ${myCar.showPlateBrandType()}
-            myFuelEngine ${myFuelEngine.showAll()}
-            myElectricCar ${myElectricCar.showAll()}
-        """.trimIndent()
+                myship: ${myShip.shipManufacturer} ${myShip.startVehicle()} ${myShip.loadThis()}
+            """.trimIndent()
         }
     }
 }

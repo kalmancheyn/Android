@@ -1,9 +1,11 @@
 package com.example.vehicledemo
 
-open class Vehicle(var plateNum: String){
+abstract class Vehicle(var manifacturer: String){
 
-    fun showPlateNum(): String {
-        return "$plateNum"
+    abstract fun startVehicle()
+
+    fun showManufacture() {
+        println("$manifacturer")
     }
 
 }
