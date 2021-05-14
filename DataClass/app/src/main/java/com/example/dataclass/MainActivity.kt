@@ -1,4 +1,4 @@
-package com.example.dataclass
+ package com.example.dataclass
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,5 +15,15 @@ class MainActivity : AppCompatActivity() {
         var year = myProfile.component2()*/
 
         println("$name, $year")
+
+        var data = object {
+            var a = 5
+            var b = 7
+
+            fun demo() {
+                
+            }
+        }
     }
 }
+
