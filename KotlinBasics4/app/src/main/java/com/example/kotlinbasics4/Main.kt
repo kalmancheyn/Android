@@ -18,6 +18,12 @@ operator fun String.times(n: Int): String {
     return result
 }
 
+fun repeatTask(times:Int, task: () -> Unit) {
+    for (index in 1..times) {
+        task()
+    }
+}
+
 fun main() {
     val a: Int = 1
     val b: Int = 2
@@ -32,4 +38,14 @@ fun main() {
     var s = "something"
 
     println(s*4)
+
+    //val square : (Int) -> Int = {number -> number * number}
+    //val square : (Int) -> Int = fun(number: Int):Int {return number * number}
+    //val square : (Int) -> Int = fun(number):Int {return number * number}
+    val square :(Int) -> Int = {it * it}
+
+    println(square(4))
+
+    //repeatTask(3, { println("Bake a cake!")})
+    repeatTask(3){ println("Bake a cake!")}
 }
