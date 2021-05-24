@@ -18,7 +18,7 @@ operator fun String.times(n: Int): String {
     return result
 }
 
-fun repeatTask(times:Int, task: () -> Unit) {
+fun repeatTask(times: Int, task: () -> Unit) {
     for (index in 1..times) {
         task()
     }
