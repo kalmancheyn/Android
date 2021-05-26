@@ -3,6 +3,7 @@ package com.example.numberguesser
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -43,11 +44,12 @@ class MainActivity : AppCompatActivity() {
                         addGuessToTv()
                         addToCounter()
                     }
+                    etGuess.text.clear()
                 } else {
-                    etGuess.error = "Csak 0 és 100 közötti számot lehet megadni"
+                    etGuess.error = "Csak 0 és 100 közötti számot lehet megadni."
                 }
             } else {
-                etGuess.error = "Meg kell adnia egy tippet 0 és 100 között."
+                etGuess.error = "Meg kell adnia egy tippet."
             }
         }
     }
@@ -81,4 +83,3 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
