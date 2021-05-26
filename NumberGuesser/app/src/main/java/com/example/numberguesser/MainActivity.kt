@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     var randNum = (0..100).random()
+    var counter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,29 +19,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun Guesser() {
-        var counter = 0
         btnGuess.setOnClickListener {
             if (etGuess.text.isNotEmpty()) {
-                if (randNum == etGuess.text.toString().toInt()) {
-                    tvResult.setTextColor(Color.parseColor("#00FF00"))
-                    tvResult.text = "Telitalálat!!!"
-                    tvInstruction.text = "Új szám generálva. \nKérem tippeljen! \n(1 és 100 között)"
-                    tvGuesses.text = "Eddigi tippek: "
-                    newRandNum()
-                } else if (randNum > etGuess.text.toString().toInt()) {
-                    changeInstruction()
-                    setColorRed()
-                    tvResult.text = "A szám nagyobb!"
+                if (etGuess.text.toString().toInt() in 0..100) {
+                    if (randNum == etGuess.text.toString().toInt()) {
+                        tvResult.setTextColor(Color.parseColor("#00FF00"))
+                        tvResult.text = "Telitalálat!!!"
+                        tvInstruction.text = "Új szám generálva. \nKérem tippeljen! \n(1 és 100 között)"
+                        tvGuesses.text = "Eddigi tippek: "
+                        tvNumOfGuess.text = "Eddigi tippek száma: "
+                        counter = 0
+                        newRandNum()
+                    } else if (randNum > etGuess.text.toString().toInt()) {
+                        changeInstruction()
+                        setColorRed()
+                        tvResult.text = "A szám nagyobb!"
+                        addGuessToTv()
+                        addToCounter()
+                    } else {
+                        changeInstruction()
+                        setColorRed()
+                        tvResult.text = "A szám kisebb!"
+                        addGuessToTv()
+                        addToCounter()
+                    }
                 } else {
-                    changeInstruction()
-                    setColorRed()
-                    tvResult.text = "A szám kisebb!"
+                    etGuess.error = "Csak 0 és 100 közötti számot lehet megadni"
                 }
-                counter++
-                tvNumOfGuess.text = "Eddigi tippek száma: $counter"
-                tvGuesses.append("${etGuess.text.toString().toInt()}, ")
             } else {
-                etGuess.error = "Meg kell adnia egy tippet"
+                etGuess.error = "Meg kell adnia egy tippet 0 és 100 között."
             }
         }
     }
@@ -62,6 +69,15 @@ class MainActivity : AppCompatActivity() {
 
     fun setColorRed () {
         tvResult.setTextColor(Color.parseColor("#FF0000"))
+    }
+
+    fun addGuessToTv () {
+        tvGuesses.append("${etGuess.text.toString().toInt()}, ")
+    }
+
+    fun addToCounter () {
+        counter++
+        tvNumOfGuess.text = "Eddigi tippek száma: $counter"
     }
 
 }
