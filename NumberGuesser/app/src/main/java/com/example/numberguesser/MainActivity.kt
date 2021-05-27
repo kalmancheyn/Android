@@ -54,14 +54,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun changeInstruction() {
+    private fun changeInstruction() {
         var str = "Kérem tippeljen! \n(1 és 100 között)"
         if (tvInstruction.text != str) {
             tvInstruction.text = str
         }
     }
 
-    fun newRandNum (): Int {
+    private fun newRandNum (): Int {
         var previusNum = randNum
         while (randNum == previusNum) {
             randNum = (0..100).random()
@@ -69,15 +69,15 @@ class MainActivity : AppCompatActivity() {
         return randNum
     }
 
-    fun setColorRed () {
+    private fun setColorRed () {
         tvResult.setTextColor(Color.parseColor("#FF0000"))
     }
 
-    fun addGuessToTv () {
+    private fun addGuessToTv () {
         tvGuesses.append("${etGuess.text.toString().toInt()}, ")
     }
 
-    fun addToCounter () {
+    private fun addToCounter () {
         counter++
         tvNumOfGuess.text = "Eddigi tippek száma: $counter"
     }
