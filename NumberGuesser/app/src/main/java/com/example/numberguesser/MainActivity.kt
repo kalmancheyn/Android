@@ -22,31 +22,35 @@ class MainActivity : AppCompatActivity() {
     private fun Guesser() {
         btnGuess.setOnClickListener {
             if (etGuess.text.isNotEmpty()) {
-                if (etGuess.text.toString().toInt() in 0..100) {
-                    if (randNum == etGuess.text.toString().toInt()) {
-                        tvResult.setTextColor(Color.parseColor("#00FF00"))
-                        tvResult.text = "Telitalálat!!!"
-                        tvInstruction.text = "Új szám generálva. \nKérem tippeljen! \n(1 és 100 között)"
-                        tvGuesses.text = "Eddigi tippek: "
-                        tvNumOfGuess.text = "Eddigi tippek száma: "
-                        counter = 0
-                        newRandNum()
-                    } else if (randNum > etGuess.text.toString().toInt()) {
-                        changeInstruction()
-                        setColorRed()
-                        tvResult.text = "A szám nagyobb!"
-                        addGuessToTv()
-                        addToCounter()
+                try {
+                    if (etGuess.text.toString().toInt() in 0..100) {
+                        if (randNum == etGuess.text.toString().toInt()) {
+                            tvResult.setTextColor(Color.parseColor("#00FF00"))
+                            tvResult.text = "Telitalálat!!!"
+                            tvInstruction.text = "Új szám generálva. \nKérem tippeljen! \n(1 és 100 között)"
+                            tvGuesses.text = "Eddigi tippek: "
+                            tvNumOfGuess.text = "Eddigi tippek száma: "
+                            counter = 0
+                            newRandNum()
+                        } else if (randNum > etGuess.text.toString().toInt()) {
+                            changeInstruction()
+                            setColorRed()
+                            tvResult.text = "A szám nagyobb!"
+                            addGuessToTv()
+                            addToCounter()
+                        } else {
+                            changeInstruction()
+                            setColorRed()
+                            tvResult.text = "A szám kisebb!"
+                            addGuessToTv()
+                            addToCounter()
+                        }
+                        etGuess.text.clear()
                     } else {
-                        changeInstruction()
-                        setColorRed()
-                        tvResult.text = "A szám kisebb!"
-                        addGuessToTv()
-                        addToCounter()
+                        etGuess.error = "Csak 0 és 100 közötti számot lehet megadni."
                     }
-                    etGuess.text.clear()
-                } else {
-                    etGuess.error = "Csak 0 és 100 közötti számot lehet megadni."
+                } catch (exc: IllegalStateException) {
+                    exc.message
                 }
             } else {
                 etGuess.error = "Meg kell adnia egy tippet."
