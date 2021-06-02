@@ -3,10 +3,16 @@ package com.example.numberguesser
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val KEY_GEN = "KEY_GEN"
+    }
 
     var randNum = (0..100).random()
     var counter = 0
@@ -17,6 +23,12 @@ class MainActivity : AppCompatActivity() {
         title = "Barkóba"
 
         Guesser()
+
+        if (savedInstanceState != null && savedInstanceState.containsKey(KEY_GEN)) {
+            randNum = savedInstanceState.getInt(KEY_GEN)
+        } else {
+            newRandNum()
+        }
     }
 
     private fun Guesser() {
@@ -84,6 +96,27 @@ class MainActivity : AppCompatActivity() {
     private fun addToCounter () {
         counter++
         tvNumOfGuess.text = "Eddigi tippek száma: $counter"
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(KEY_GEN, randNum)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_game, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_restart) {
+            newRandNum()
+            tvInstruction.text = "Új szám generálva. \nKérem tippeljen! \n(1 és 100 között)"
+        } else if (item.itemId == R.id.action_exit) {
+            finish()
+        }
+
+        return true
     }
 
 }
