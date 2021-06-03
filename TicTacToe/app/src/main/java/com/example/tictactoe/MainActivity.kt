@@ -2,6 +2,8 @@ package com.example.tictactoe
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewAnimationUtils
 import com.example.tictactoe.model.TicTacToeModel
@@ -14,7 +16,6 @@ class MainActivity : AppCompatActivity() {
 
         btnReset.setOnClickListener {
             ticView.resetGame()
-
             revealTicTacToe()
         }
     }
@@ -38,6 +39,20 @@ class MainActivity : AppCompatActivity() {
 
         ticView.setVisibility(View.VISIBLE)
         anim.start()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.game_restart) {
+            ticView.resetGame()
+            revealTicTacToe()
+        }
+
+        return true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_game, menu)
+        return true
     }
 
 }

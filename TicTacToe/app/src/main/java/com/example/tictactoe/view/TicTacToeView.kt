@@ -49,7 +49,7 @@ class TicTacToeView(context: Context?, attrs: AttributeSet?) : View(context, att
 
         super.onDraw(canvas)
 
-        canvas!!.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(),25f,25f, paintBackground)
+        canvas!!.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(),35f,35f, paintBackground)
 
         drawGameArea(canvas)
 
@@ -58,7 +58,7 @@ class TicTacToeView(context: Context?, attrs: AttributeSet?) : View(context, att
 
     private fun drawGameArea(canvas: Canvas) {
         // border
-        canvas.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(),25f,25f, paintBorderLine)
+        canvas.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(),35f,35f, paintBorderLine)
 
         // four horizontal lines
         canvas.drawLine(0f, (height / 5).toFloat(), width.toFloat(), (height / 5).toFloat(), paintLine)
