@@ -34,11 +34,11 @@ class TicTacToeView(context: Context?, attrs: AttributeSet?) : View(context, att
         paintBorderLine.style = Paint.Style.STROKE
         paintBorderLine.strokeWidth = 15f
 
-        paintLineCross.color = Color.RED
+        paintLineCross.color = Color.BLACK
         paintLineCross.style = Paint.Style.STROKE
         paintLineCross.strokeWidth = 5f
 
-        paintLineCircle.color = Color.BLUE
+        paintLineCircle.color = Color.WHITE
         paintLineCircle.style = Paint.Style.STROKE
         paintLineCircle.strokeWidth = 5f
 
@@ -49,7 +49,7 @@ class TicTacToeView(context: Context?, attrs: AttributeSet?) : View(context, att
 
         super.onDraw(canvas)
 
-        canvas!!.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(),80f,80f, paintBackground)
+        canvas!!.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(),25f,25f, paintBackground)
 
         drawGameArea(canvas)
 
@@ -58,7 +58,7 @@ class TicTacToeView(context: Context?, attrs: AttributeSet?) : View(context, att
 
     private fun drawGameArea(canvas: Canvas) {
         // border
-        canvas.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(),80f,80f, paintBorderLine)
+        canvas.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(),25f,25f, paintBorderLine)
 
         // four horizontal lines
         canvas.drawLine(0f, (height / 5).toFloat(), width.toFloat(), (height / 5).toFloat(), paintLine)

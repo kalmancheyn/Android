@@ -2,6 +2,8 @@ package com.example.tictactoe
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.ViewAnimationUtils
 import com.example.tictactoe.model.TicTacToeModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -12,6 +14,8 @@ class MainActivity : AppCompatActivity() {
 
         btnReset.setOnClickListener {
             ticView.resetGame()
+
+            revealTicTacToe()
         }
     }
     public fun showText(text: String) {
@@ -21,4 +25,19 @@ class MainActivity : AppCompatActivity() {
     public fun showWinner(text: String) {
         tvWinner.text = text
     }
+
+    fun revealTicTacToe() {
+        val x = ticView.getRight()
+        val y = ticView.getBottom()
+
+        val startRadius = 0
+        val endRadius = Math.hypot(ticView.getWidth().toDouble(),
+            ticView.getHeight().toDouble()).toInt()
+
+        val anim = ViewAnimationUtils.createCircularReveal(ticView, x, y, startRadius.toFloat(), endRadius.toFloat())
+
+        ticView.setVisibility(View.VISIBLE)
+        anim.start()
+    }
+
 }
