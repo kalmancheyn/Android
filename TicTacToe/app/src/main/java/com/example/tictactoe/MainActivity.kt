@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewAnimationUtils
 import com.example.tictactoe.model.TicTacToeModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,11 +20,11 @@ class MainActivity : AppCompatActivity() {
             revealTicTacToe()
         }
     }
-    public fun showText(text: String) {
+    fun showText(text: String) {
         tvData.text = text
     }
 
-    public fun showWinner(text: String) {
+    fun showWinner(text: String) {
         tvWinner.text = text
     }
 
@@ -45,8 +46,9 @@ class MainActivity : AppCompatActivity() {
         if (item.itemId == R.id.game_restart) {
             ticView.resetGame()
             revealTicTacToe()
+        } else if (item.itemId == R.id.game_back) {
+            finish()
         }
-
         return true
     }
 

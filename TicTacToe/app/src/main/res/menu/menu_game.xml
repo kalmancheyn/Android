@@ -4,6 +4,4 @@
         android:title="Új játék" />
     <item android:id="@+id/game_back"
         android:title="Vissza" />
-    <item android:id="@+id/game_exit"
-        android:title="Kilépés" />
 </menu>

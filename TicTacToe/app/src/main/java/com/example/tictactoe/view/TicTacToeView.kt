@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
@@ -32,7 +31,7 @@ class TicTacToeView(context: Context?, attrs: AttributeSet?) : View(context, att
 
         paintBorderLine.color = Color.parseColor("#808080")
         paintBorderLine.style = Paint.Style.STROKE
-        paintBorderLine.strokeWidth = 15f
+        paintBorderLine.strokeWidth = 10f
 
         paintLineCross.color = Color.BLACK
         paintLineCross.style = Paint.Style.STROKE
@@ -49,7 +48,7 @@ class TicTacToeView(context: Context?, attrs: AttributeSet?) : View(context, att
 
         super.onDraw(canvas)
 
-        canvas!!.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(),35f,35f, paintBackground)
+        canvas!!.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(),60f,60f, paintBackground)
 
         drawGameArea(canvas)
 
@@ -58,7 +57,7 @@ class TicTacToeView(context: Context?, attrs: AttributeSet?) : View(context, att
 
     private fun drawGameArea(canvas: Canvas) {
         // border
-        canvas.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(),35f,35f, paintBorderLine)
+        canvas.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(),60f,60f, paintBorderLine)
 
         // four horizontal lines
         canvas.drawLine(0f, (height / 5).toFloat(), width.toFloat(), (height / 5).toFloat(), paintLine)
@@ -81,17 +80,16 @@ class TicTacToeView(context: Context?, attrs: AttributeSet?) : View(context, att
                     val centerY = (j * height / 5 + height / 10).toFloat()
                     val radius = height / 10-5
 
-                    canvas.drawCircle(centerX, centerY, radius.toFloat(), paintLineCircle)
+                    canvas.drawCircle(centerX, centerY, radius.toFloat()-20, paintLineCircle)
                 } else if (TicTacToeModel.getFieldContent(i, j) == TicTacToeModel.CROSS) {
                     canvas.drawLine(
-                        (i * width / 5).toFloat(), (j * height / 5).toFloat(),
-                        ((i + 1) * width / 5).toFloat(),
-                        ((j + 1) * height / 5).toFloat(), paintLineCross
+                        (i * width / 5).toFloat()+20, (j * height / 5).toFloat()+20,
+                        ((i + 1) * width / 5).toFloat()-20, ((j + 1) * height / 5).toFloat()-20, paintLineCross
                     )
 
                     canvas.drawLine(
-                        ((i + 1) * width / 5).toFloat(), (j * height / 5).toFloat(),
-                        (i * width / 5).toFloat(), ((j + 1) * height / 5).toFloat(), paintLineCross
+                        ((i + 1) * width / 5).toFloat()-20, (j * height / 5)+20.toFloat(),
+                        (i * width / 5).toFloat()+20, ((j + 1) * height / 5).toFloat()-20, paintLineCross
                     )
                 }
             }
@@ -115,18 +113,12 @@ class TicTacToeView(context: Context?, attrs: AttributeSet?) : View(context, att
                             winner = "Iksz"
                         }
                         (context as MainActivity).showWinner("A győztes $winner")
-                        TicTacToeModel.changeNextPlayer()
-                        invalidate()
+                        refreshModel()
                         boolWin = false
                     }
                 } else {
-                    TicTacToeModel.changeNextPlayer()
-                    invalidate()
-                    var next = "Kör"
-                    if (TicTacToeModel.getNextPlayer() == TicTacToeModel.CROSS) {
-                        next = "Iksz"
-                    }
-                    (context as MainActivity).showText("A következő játékos $next")
+                    refreshModel()
+                    showNextPlayer()
                 }
             }
         }
@@ -137,7 +129,21 @@ class TicTacToeView(context: Context?, attrs: AttributeSet?) : View(context, att
         TicTacToeModel.resetModel()
         invalidate()
         (context as MainActivity).showWinner("")
+        showNextPlayer()
         boolWin = true
+    }
+
+    fun showNextPlayer () {
+        var next = "Kör"
+        if (TicTacToeModel.getNextPlayer() == TicTacToeModel.CROSS) {
+            next = "Iksz"
+        }
+        (context as MainActivity).showText("A következő játékos $next")
+    }
+
+    fun refreshModel () {
+        TicTacToeModel.changeNextPlayer()
+        invalidate()
     }
 
 }

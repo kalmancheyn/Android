@@ -7,30 +7,48 @@
     android:orientation="vertical"
     tools:context=".MenuActivity">
 
-    <TextView
-        android:textSize="50sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100sp"
-        android:layout_marginBottom="150sp"
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/game_name" />
+        android:layout_gravity="center">
+        <TextView
+            android:textSize="80sp"
+            android:layout_marginTop="150sp"
+            android:layout_marginBottom="60sp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/game_name" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <Button
+        android:background="@drawable/round_style"
         android:id="@+id/btnGameStart"
         android:textSize="26sp"
-        android:layout_margin="30sp"
+        android:layout_marginHorizontal="30sp"
+        android:layout_marginBottom="10sp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/game_start" />
+        android:text="@string/game_start_btn" />
 
     <Button
+        android:background="@drawable/round_style"
         android:id="@+id/btnGameRules"
+        android:textSize="26sp"
+        android:layout_marginHorizontal="30sp"
+        android:layout_marginBottom="10sp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/game_rules_btn"/>
+    <Button
+        android:background="@drawable/round_style"
+        android:id="@+id/btnGameExit"
         android:textSize="26sp"
         android:layout_marginHorizontal="30sp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/game_rules"/>
+        android:text="@string/btn_exit"/>
 
 
 </LinearLayout>
