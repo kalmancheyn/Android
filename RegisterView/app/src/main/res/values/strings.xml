@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RegisterView</string>
+    <string name="tv_regsiter">Regisztráció</string>
+    <string name="et_name">Név</string>
+    <string name="et_password">Jelszó</string>
+    <string name="btn_login">Bejelentkezés</string>
+
+</resources>

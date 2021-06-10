@@ -3,7 +3,6 @@ package com.example.tictactoe
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_menu.*
 import com.example.tictactoe.model.TicTacToeModel
 
@@ -18,7 +17,7 @@ class MenuActivity : AppCompatActivity() {
         }
 
         btnGameRules.setOnClickListener {
-            startActivity(Intent(this, GameRules::class.java))
+            startActivity(Intent(this, GameRulesActivity::class.java))
         }
 
         btnGameExit.setOnClickListener {
