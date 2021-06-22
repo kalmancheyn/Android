@@ -41,21 +41,32 @@ class MainActivity : AppCompatActivity() {
         }
 
         sbHeight.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-
-            override fun onProgressChanged(seekBar: SeekBar, height: Int, b: Boolean) {
-                // Display the current progress of SeekBar
+            override fun onProgressChanged(seekBar: SeekBar?, height: Int, fromUser: Boolean) {
                 tvHeightResult.text = "$height cm"
             }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar) {
-                // Do something
-                Toast.makeText(applicationContext,"",Toast.LENGTH_SHORT).show()
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                TODO("Not yet implemented")
             }
 
-            override fun onStopTrackingTouch(seekBar: SeekBar) {
-                // Do something
-                Toast.makeText(applicationContext,"",Toast.LENGTH_SHORT).show()
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                TODO("Not yet implemented")
             }
+
+//            override fun onProgressChanged(seekBar: SeekBar, height: Int, b: Boolean) {
+//                // Display the current progress of SeekBar
+//                tvHeightResult.text = "$height cm"
+//            }
+//
+//            override fun onStartTrackingTouch(seekBar: SeekBar) {
+//                // Do something
+//                Toast.makeText(applicationContext,"",Toast.LENGTH_SHORT).show()
+//            }
+//
+//            override fun onStopTrackingTouch(seekBar: SeekBar) {
+//                // Do something
+//                Toast.makeText(applicationContext,"",Toast.LENGTH_SHORT).show()
+//            }
         })
 
         sbAge.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -83,15 +94,23 @@ class MainActivity : AppCompatActivity() {
                 tvWeightResult.text = "$weight kg"
             }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar) {
-                // Do something
-                Toast.makeText(applicationContext,"",Toast.LENGTH_SHORT).show()
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                TODO("Not yet implemented")
             }
 
-            override fun onStopTrackingTouch(seekBar: SeekBar) {
-                // Do something
-                Toast.makeText(applicationContext,"",Toast.LENGTH_SHORT).show()
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                TODO("Not yet implemented")
             }
+
+//            override fun onStartTrackingTouch(seekBar: SeekBar) {
+//                // Do something
+//                Toast.makeText(applicationContext,"",Toast.LENGTH_SHORT).show()
+//            }
+//
+//            override fun onStopTrackingTouch(seekBar: SeekBar) {
+//                // Do something
+//                Toast.makeText(applicationContext,"",Toast.LENGTH_SHORT).show()
+//            }
         })
 
         var bmiIndex : Float
