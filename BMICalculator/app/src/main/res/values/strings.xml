@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BMICalculator</string>
+    <string name="btn_male">Férfi</string>
+    <string name="btn_female">Nő</string>
+</resources>
