@@ -8,13 +8,12 @@ import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    var weight = 70
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         var gender : Boolean? = null
-
         var maleBtnPressed = 0
         var femaleBtnPressed = 0
 
@@ -41,82 +40,38 @@ class MainActivity : AppCompatActivity() {
         }
 
         sbHeight.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, height: Int, fromUser: Boolean) {
-                tvHeightResult.text = "$height cm"
-            }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
-            }
-
-//            override fun onProgressChanged(seekBar: SeekBar, height: Int, b: Boolean) {
-//                // Display the current progress of SeekBar
-//                tvHeightResult.text = "$height cm"
-//            }
-//
-//            override fun onStartTrackingTouch(seekBar: SeekBar) {
-//                // Do something
-//                Toast.makeText(applicationContext,"",Toast.LENGTH_SHORT).show()
-//            }
-//
-//            override fun onStopTrackingTouch(seekBar: SeekBar) {
-//                // Do something
-//                Toast.makeText(applicationContext,"",Toast.LENGTH_SHORT).show()
-//            }
-        })
-
-        sbAge.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-
-            override fun onProgressChanged(seekBar: SeekBar, age: Int, b: Boolean) {
+            override fun onProgressChanged(seekBar: SeekBar, height: Int, b: Boolean) {
                 // Display the current progress of SeekBar
-                tvAgeResult.text = "$age"
+                tvHeightResult.text = "$height cm"
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
                 // Do something
-                Toast.makeText(applicationContext,"",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,"Magasság minimum",Toast.LENGTH_SHORT).show()
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
                 // Do something
-                Toast.makeText(applicationContext,"",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,"Magasság maximum",Toast.LENGTH_SHORT).show()
             }
         })
 
-        sbWeight.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        showWeight()
 
-            override fun onProgressChanged(seekBar: SeekBar, weight: Int, b: Boolean) {
-                // Display the current progress of SeekBar
-                tvWeightResult.text = "$weight kg"
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
-            }
-
-//            override fun onStartTrackingTouch(seekBar: SeekBar) {
-//                // Do something
-//                Toast.makeText(applicationContext,"",Toast.LENGTH_SHORT).show()
-//            }
-//
-//            override fun onStopTrackingTouch(seekBar: SeekBar) {
-//                // Do something
-//                Toast.makeText(applicationContext,"",Toast.LENGTH_SHORT).show()
-//            }
-        })
+        btnWeightPlus.setOnClickListener {
+            weight++
+            showWeight()
+        }
+        btnWeightMinus.setOnClickListener {
+            weight--
+            showWeight()
+        }
 
         var bmiIndex : Float
 
         btnCalculate.setOnClickListener {
-            bmiIndex = sbWeight.progress.toFloat()/((sbHeight.progress.toFloat()/100)*(sbHeight.progress.toFloat()/100))
+            bmiIndex = weight/((sbHeight.progress.toFloat()/100)*(sbHeight.progress.toFloat()/100))
             if (gender == null) {
                 tvResult.text = "Kérem adja meg a nemét!"
             } else {
@@ -134,6 +89,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+
+    fun showWeight() {
+        tvWeight.text = weight.toString()
     }
 
     fun changeFemaleBtnBackgroundDefault() {
