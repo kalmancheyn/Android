@@ -27,7 +27,7 @@ class TodoDialog : DialogFragment() {
             todoHandler = context
         } else {
             throw RuntimeException(
-                "The Activity is not implementing the TodoHandler interface.")
+                "The Activity is not implementing the ShoppinHandler interface.")
         }
     }
 
@@ -38,7 +38,7 @@ class TodoDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialogBuilder = AlertDialog.Builder(requireContext())
 
-        dialogBuilder.setTitle("Todo dialog")
+        dialogBuilder.setTitle("Shopping dialog")
         val dialogView = requireActivity().layoutInflater.inflate(
             R.layout.todo_dialog, null
         )
@@ -73,7 +73,7 @@ class TodoDialog : DialogFragment() {
         etTodoText.requestFocus()
 
         val inputMethodManager =
-            context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.toggleSoftInput(
             InputMethodManager.SHOW_FORCED,
             0

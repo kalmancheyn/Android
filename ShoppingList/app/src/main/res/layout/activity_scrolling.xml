@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
-        android:theme="@style/Theme.TodoRecylerViewDEMO.AppBarOverlay">
+        android:theme="@style/Theme.ShoppingList.AppBarOverlay">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
@@ -23,30 +23,24 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
-<!--            <com.flaviofaria.kenburnsview.KenBurnsView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:src="@mipmap/ic_launcher"/>-->
-
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/Theme.TodoRecylerViewDEMO.PopupOverlay" />
+                app:popupTheme="@style/Theme.ShoppingList.PopupOverlay" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerTodo"
+        android:id="@+id/rvShopping"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:scrollbars="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

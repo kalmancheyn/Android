@@ -7,9 +7,14 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.GridLayout
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.todorecylerviewdemo.adapter.todoAdapter
 import com.example.todorecylerviewdemo.data.Todo
 import com.example.todorecylerviewdemo.databinding.ActivityScrollingBinding
+import com.example.todorecylerviewdemo.touch.todoRecyclerTouchCallback
 import kotlinx.android.synthetic.main.activity_scrolling.*
 
 class ScrollingActivity : AppCompatActivity(), TodoDialog.TodoHandler {
@@ -25,6 +30,13 @@ class ScrollingActivity : AppCompatActivity(), TodoDialog.TodoHandler {
 
         todoAdapter = todoAdapter(this)
         recyclerTodo.adapter = todoAdapter
+        //recyclerTodo.layoutManager = GridLayoutManager(this, 2)
+        //recyclerTodo.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+
+        val touchCallBack = todoRecyclerTouchCallback(todoAdapter)
+        val itemTouchHelper = ItemTouchHelper(touchCallBack)
+        itemTouchHelper.attachToRecyclerView(recyclerTodo)
+
 
         fab.setOnClickListener {
             TodoDialog().show(supportFragmentManager, "Dialog")
