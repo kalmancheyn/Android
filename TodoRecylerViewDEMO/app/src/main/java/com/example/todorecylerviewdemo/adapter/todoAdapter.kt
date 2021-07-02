@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todorecylerviewdemo.R
+import com.example.todorecylerviewdemo.ScrollingActivity
+import com.example.todorecylerviewdemo.data.AppDatabase
 import com.example.todorecylerviewdemo.data.Todo
 import com.example.todorecylerviewdemo.touch.todoTouchHelperCallback
 import kotlinx.android.synthetic.main.todo_row.view.*
@@ -14,15 +16,12 @@ import java.util.*
 
 class todoAdapter : RecyclerView.Adapter<todoAdapter.ViewHolder>, todoTouchHelperCallback{
 
-    var todoItems = mutableListOf<Todo>(
-        Todo("2020.03.12", false, "Go to cinema"),
-        Todo("2020.05.11", false, "Do the dishes"),
-        Todo("2020.04.10", false, "Washing")
-    )
+    var todoItems = mutableListOf<Todo>()
 
     val context: Context
-    constructor(context: Context): super() {
+    constructor(context: Context,todoList: List<Todo>): super() {
         this.context = context
+        todoItems.addAll(todoList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -57,8 +56,16 @@ class todoAdapter : RecyclerView.Adapter<todoAdapter.ViewHolder>, todoTouchHelpe
     }
 
     fun deleteTodo(position: Int) {
-        todoItems.removeAt(position)
-        notifyItemRemoved(position)
+
+        var todoToDelete = todoItems.get(position)
+        Thread {
+            AppDatabase.getInstance(context).todoDao().deleteTodo(todoToDelete)
+
+            (context as ScrollingActivity).runOnUiThread {
+                todoItems.removeAt(position)
+                notifyItemRemoved(position)
+            }
+        }.start()
     }
 
     override fun onDismissed(position: Int) {
