@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
-        android:theme="@style/Theme.ShoppingList.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
@@ -28,19 +28,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/Theme.ShoppingList.PopupOverlay" />
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvShopping"
+        android:id="@+id/recyclerShopping"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:scrollbars="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -49,6 +50,6 @@
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_add_shopping_cart" />
+        app:srcCompat="@android:drawable/ic_dialog_email" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

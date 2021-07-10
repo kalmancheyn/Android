@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ShopList</string>
+    <string-array name="category_array">
+        <item>Étel</item>
+        <item>Ruha</item>
+        <item>Sport</item>
+    </string-array>
+    <string name="action_settings">Settings</string>
+</resources>
