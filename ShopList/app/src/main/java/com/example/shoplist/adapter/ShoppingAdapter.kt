@@ -10,9 +10,11 @@ import com.example.shoplist.R
 import com.example.shoplist.ScrollingActivity
 import com.example.shoplist.data.AppDatabase
 import com.example.shoplist.data.ShoppingList
+import com.example.shoplist.touch.ShoppingListTouchHelperCallback
 import kotlinx.android.synthetic.main.item_row.view.*
+import java.util.*
 
-class ShoppingAdapter : RecyclerView.Adapter<ShoppingAdapter.ViewHolder>{
+class ShoppingAdapter : RecyclerView.Adapter<ShoppingAdapter.ViewHolder>, ShoppingListTouchHelperCallback{
 
     var shopItems = mutableListOf<ShoppingList>()
 
@@ -83,6 +85,15 @@ class ShoppingAdapter : RecyclerView.Adapter<ShoppingAdapter.ViewHolder>{
         var ivItemLogo = itemView.ivItemLogo
         var btnDelete = itemView.btnDelete
         var tvDescripton = itemView.tvDescription
+    }
+
+    override fun onDismissed(position: Int) {
+        deleteItem(position)
+    }
+
+    override fun onItemMoved(fromPosition: Int, toPosition: Int) {
+        Collections.swap(shopItems, fromPosition, toPosition)
+        notifyItemMoved(fromPosition, toPosition)
     }
 
 }

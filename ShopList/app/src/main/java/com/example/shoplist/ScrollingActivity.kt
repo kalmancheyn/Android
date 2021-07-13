@@ -2,10 +2,13 @@ package com.example.shoplist
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.shoplist.adapter.ShoppingAdapter
 import com.example.shoplist.data.AppDatabase
 import com.example.shoplist.data.ShoppingList
 import com.example.shoplist.dialog.ShoppingDialog
+import com.example.shoplist.touch.ShoppingListRecyclerTouchCallback
+import com.example.shoplist.touch.ShoppingListTouchHelperCallback
 import kotlinx.android.synthetic.main.activity_scrolling.*
 
 class ScrollingActivity : AppCompatActivity(), ShoppingDialog.ShoppingHandler {
@@ -18,6 +21,10 @@ class ScrollingActivity : AppCompatActivity(), ShoppingDialog.ShoppingHandler {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         initRecyclerView()
+
+//        val touchCallback = ShoppingListRecyclerTouchCallback(shopAdapter)
+//        val itemTouchHelper = ItemTouchHelper(touchCallback)
+//        itemTouchHelper.attachToRecyclerView(rvShopping)
 
         fab.setOnClickListener {
             ShoppingDialog().show(supportFragmentManager, "Dialog")
