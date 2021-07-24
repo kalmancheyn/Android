@@ -22,10 +22,6 @@ class ScrollingActivity : AppCompatActivity(), ShoppingDialog.ShoppingHandler {
 
         initRecyclerView()
 
-//        val touchCallback = ShoppingListRecyclerTouchCallback(shopAdapter)
-//        val itemTouchHelper = ItemTouchHelper(touchCallback)
-//        itemTouchHelper.attachToRecyclerView(rvShopping)
-
         fab.setOnClickListener {
             ShoppingDialog().show(supportFragmentManager, "Dialog")
         }
@@ -39,6 +35,11 @@ class ScrollingActivity : AppCompatActivity(), ShoppingDialog.ShoppingHandler {
             runOnUiThread {
                 shopAdapter = ShoppingAdapter(this, shoppingItemList)
                 rvShopping.adapter = shopAdapter
+
+                val touchCallback = ShoppingListRecyclerTouchCallback(shopAdapter)
+                val itemTouchHelper = ItemTouchHelper(touchCallback)
+                itemTouchHelper.attachToRecyclerView(rvShopping)
+
             }
         }.start()
     }
