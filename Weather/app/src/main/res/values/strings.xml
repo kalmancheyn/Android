@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Weather</string>
+    <string name="city_name">Város név</string>
+    <string name="btnweather">Időjárás</string>
 </resources>

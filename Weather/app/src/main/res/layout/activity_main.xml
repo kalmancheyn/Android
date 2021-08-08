@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_gravity="center"
     tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/etCity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Város név"
+        android:layout_marginHorizontal="40sp"
+        android:background="@drawable/et_shape"
+        android:padding="10dp"
+        android:hint="@string/city_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -21,12 +25,10 @@
         android:id="@+id/btnWeather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Időjárás"/>
+        android:layout_gravity="center"
+        android:text="@string/btnweather"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCity" />
 
-    <TextView
-        android:id="@+id/tvResult"
-        android:textSize="24sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

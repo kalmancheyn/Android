@@ -1,5 +1,6 @@
 package webuni.weather
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.gson.Gson
@@ -17,31 +18,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.openweathermap.org")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val weatherAPI = retrofit.create(WeatherAPI::class.java)
-
         btnWeather.setOnClickListener {
-            val weatherCall = weatherAPI.getPlace(etCity.toString())
-
-            weatherCall.enqueue(object : Callback<WeatherResult> {
-                override fun onResponse(
-                    call: Call<WeatherResult>,
-                    response: Response<WeatherResult>
-                ) {
-                    val weatherResult = response.body()
-
-                    tvResult.text = "Hőmérséklet: ${weatherResult?.sys?.country}"
-                }
-
-                override fun onFailure(call: Call<WeatherResult>, t: Throwable) {
-                    tvResult.text = t.message
-                }
-
-            })
+            val startWeather = Intent(this,WeatherActivity::class.java)
+            startWeather.putExtra("cityName", etCity.text.toString())
+            startActivity(startWeather)
         }
     }
 }
