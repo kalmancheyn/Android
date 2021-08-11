@@ -12,38 +12,38 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import webuni.weather.data.WeatherForecast
 import webuni.weather.data.WeatherResult
 import webuni.weather.network.WeatherAPI
+import webuni.weather.network.WeatherForecastAPI
 import java.text.DateFormatSymbols
+import java.text.SimpleDateFormat
 
 class WeatherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
-        
-
-        tvNextDay
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.openweathermap.org/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val weatherAPI = retrofit.create(WeatherAPI::class.java)
+        val weatherAPI = retrofit.create(WeatherForecastAPI::class.java)
 
         val cityName = intent.getStringExtra("cityName")
         findViewById<TextView>(R.id.tvCityName).apply {
             text = cityName.toString()
         }
 
-        val weatherCall = weatherAPI.getPlace(cityName.toString(), "metric", "f3d694bc3e1d44c1ed5a97bd1120e8fe")
+        val weatherCall = weatherAPI.getForecast(cityName.toString(),3,"f3d694bc3e1d44c1ed5a97bd1120e8fe")
 
-        weatherCall.enqueue(object : Callback<WeatherResult> {
-            override fun onResponse(call: Call<WeatherResult>, response: Response<WeatherResult>) {
+        weatherCall.enqueue(object : Callback<WeatherForecast> {
+            override fun onResponse(call: Call<WeatherForecast>, response: Response<WeatherForecast>) {
                 val weatherResult = response.body()
 
                 tvCityName.text = cityName.toString()
-                tvTemperature.text = "${weatherResult?.main?.temp?.toInt()}°"
+                tvTemperature.text = "${weatherResult?.list}°"
                 tvTemperatureMaxMin.text = "${weatherResult?.main?.temp_max?.toInt()}° / ${weatherResult?.main?.temp_min?.toInt()}°"
 
                 var iconUrl = "https://openweathermap.org/img/w/${weatherResult!!.weather!!.get(0).icon}.png"
@@ -52,7 +52,7 @@ class WeatherActivity : AppCompatActivity() {
 
             }
 
-            override fun onFailure(call: Call<WeatherResult>, t: Throwable) {
+            override fun onFailure(call: Call<WeatherForecast>, t: Throwable) {
                 tvCityName.text = t.message
             }
 
