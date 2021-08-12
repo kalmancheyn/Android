@@ -1,22 +1,20 @@
 package com.example.incomeexpenditurerv.data
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
+@Dao
 interface IncomeExpenditureDAO {
 
     @Query("SELECT * FROM incomeExpenditure")
-    fun getAllShoppingItems(): List<IncomeExpenditure>
+    fun getAllIncomeExpenditure(): List<IncomeExpenditure>
 
     @Insert
-    fun insertShoppingItem(todo: IncomeExpenditure) : Long
+    fun insertIncomeExpenditure(todo: IncomeExpenditure) : Long
 
     @Delete
-    fun deleteShoppingItem(todo: IncomeExpenditure)
+    fun deleteIncomeExpenditure(todo: IncomeExpenditure)
 
     @Update
-    fun updateShoppingItem(todo: IncomeExpenditure)
+    fun updateIncomeExpenditure(todo: IncomeExpenditure)
 
 }

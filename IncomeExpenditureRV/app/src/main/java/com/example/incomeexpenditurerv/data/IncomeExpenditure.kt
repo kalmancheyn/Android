@@ -9,5 +9,6 @@ import java.io.Serializable
 data class IncomeExpenditure(
     @PrimaryKey(autoGenerate = true) var itemId: Long?,
     @ColumnInfo(name = "name") var name : String,
-    @ColumnInfo(name = "price") var price : String
+    @ColumnInfo(name = "price") var price : String,
+    @ColumnInfo(name = "category") var category: Int,
 ) :Serializable
