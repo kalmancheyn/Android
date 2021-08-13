@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Kiadás-Bevétel</string>
+    <string-array name="category_array">
+        <item>Kiadás</item>
+        <item>Bevétel</item>
+    </string-array>
+    <string name="action_settings">Settings</string>
+    <string name="efab_history">Összesített</string>
+    <string name="efab_delAll">Minden törlése</string>
+</resources>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IncomeExpenditureRV</string>
+    <string name="app_name">Kiadás-Bevétel</string>
     <string-array name="category_array">
         <item>Kiadás</item>
         <item>Bevétel</item>

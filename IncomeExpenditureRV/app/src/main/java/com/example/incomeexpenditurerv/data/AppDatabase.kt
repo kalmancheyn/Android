@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 @Database(entities = arrayOf(IncomeExpenditure::class), version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun shoppingDao(): IncomeExpenditureDAO
+    abstract fun incomeExpenditureDAO(): IncomeExpenditureDAO
 
     companion object {
         private var INSTANCE: AppDatabase? = null
