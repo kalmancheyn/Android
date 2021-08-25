@@ -1,5 +1,6 @@
 package com.example.incomeexpenditure
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.incomeexpenditure.adapter.IncomeExpenditureAdapter
@@ -22,25 +23,29 @@ private lateinit var binding: ActivityScrollingBinding
         binding = ActivityScrollingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(findViewById(R.id.toolbar))
-        binding.toolbarLayout.title = title
 
         initRecyclerView()
+
+        fabHistory.setOnClickListener {
+            var startHistory = Intent(this, AllIncomeExpends::class.java)
+            startActivity(startHistory)
+        }
 
         fabAdd.setOnClickListener {
             IncomeExpenditureDialog().show(supportFragmentManager, "Dialog")
         }
 
-        fabDeleteAll.setOnClickListener {
-            Thread {
-                var incomeList = AppDatabase.getInstance(this@ScrollingActivity).incomeExpenditureDAO().deleteAll()
-
-                runOnUiThread {
-                    adapterIncome = IncomeExpenditureAdapter(this,incomeList)
-                    recyclerView.adapter = adapterIncome
-
-                }
-            }.start()
-        }
+//        fabDeleteAll.setOnClickListener {
+//            Thread {
+//                var incomeList = AppDatabase.getInstance(this@ScrollingActivity).incomeExpenditureDAO().deleteAll()
+//
+//                runOnUiThread {
+//                    adapterIncome = IncomeExpenditureAdapter(this,incomeList)
+//                    recyclerView.adapter = adapterIncome
+//
+//                }
+//            }.start()
+//        }
 
     }
 

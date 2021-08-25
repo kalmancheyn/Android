@@ -21,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:toolbarId="@+id/toolbar"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:contentScrim="?attr/colorPrimary">
 
             <androidx.appcompat.widget.Toolbar
@@ -30,6 +29,7 @@
                 android:layout_width="match_parent"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/Theme.IncomeExpenditure.PopupOverlay" />
+
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -41,8 +41,7 @@
         android:padding="20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:scrollbars="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
@@ -53,8 +52,7 @@
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fabHistory"
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton        android:id="@+id/fabHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
@@ -68,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="right"
+        app:layout_anchorGravity="right|center"
         android:text="@string/efab_delAll"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
