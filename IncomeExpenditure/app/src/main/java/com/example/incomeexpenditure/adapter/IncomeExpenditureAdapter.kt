@@ -28,9 +28,9 @@ class IncomeExpenditureAdapter : RecyclerView.Adapter<IncomeExpenditureAdapter.V
         holder.tvPrice.text = incomeExpenditureItem.price
 
         if (incomeExpenditureList[position].category == 0) {
-            holder.tvType.text = "Kiadás"
+            holder.tvType.text = "Kiadás:"
         } else {
-            holder.tvType.text = "Bevétel"
+            holder.tvType.text = "Bevétel:"
         }
 
         holder.btnDelet.setOnClickListener {

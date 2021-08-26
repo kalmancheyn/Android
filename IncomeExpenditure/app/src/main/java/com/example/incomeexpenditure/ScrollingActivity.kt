@@ -35,17 +35,16 @@ private lateinit var binding: ActivityScrollingBinding
             IncomeExpenditureDialog().show(supportFragmentManager, "Dialog")
         }
 
-//        fabDeleteAll.setOnClickListener {
-//            Thread {
-//                var incomeList = AppDatabase.getInstance(this@ScrollingActivity).incomeExpenditureDAO().deleteAll()
-//
-//                runOnUiThread {
-//                    adapterIncome = IncomeExpenditureAdapter(this,incomeList)
-//                    recyclerView.adapter = adapterIncome
-//
-//                }
-//            }.start()
-//        }
+        fabDeleteAll.setOnClickListener {
+            Thread {
+                var incomeList = AppDatabase.getInstance(this@ScrollingActivity).incomeExpenditureDAO().deleteAll()
+
+                runOnUiThread {
+                    initRecyclerView()
+
+                }
+            }.start()
+        }
 
     }
 

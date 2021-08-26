@@ -8,11 +8,11 @@ interface IncomeExpenditureDAO {
     @Query("SELECT * FROM incomeExpenditure")
     fun getAllIncomeExpenditure(): List<IncomeExpenditure>
 
-//    @Query("DELETE FROM incomeExpenditure")
-//    fun deleteAll(): List<IncomeExpenditure>
+    @Query("DELETE FROM incomeExpenditure")
+    fun deleteAll()
 
-    @Query("SELECT SUM(price) FROM incomeExpenditure")
-    fun getAll(): Int
+    @Query("SELECT * FROM incomeExpenditure WHERE category= :category")
+    fun getIncome(category: Int): List<IncomeExpenditure>
 
     @Insert
     fun insertIncomeExpenditure(item: IncomeExpenditure) : Long
