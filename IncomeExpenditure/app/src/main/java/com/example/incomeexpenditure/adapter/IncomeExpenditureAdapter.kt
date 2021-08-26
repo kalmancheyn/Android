@@ -9,10 +9,12 @@ import com.example.incomeexpenditure.R
 import com.example.incomeexpenditure.ScrollingActivity
 import com.example.incomeexpenditure.data.AppDatabase
 import com.example.incomeexpenditure.data.IncomeExpenditure
+import com.example.incomeexpenditure.touch.IncomeExpenditureTouchHelperCallback
 import kotlinx.android.synthetic.main.row.view.*
 import java.lang.Exception
+import java.util.*
 
-class IncomeExpenditureAdapter : RecyclerView.Adapter<IncomeExpenditureAdapter.ViewHolder>{
+class IncomeExpenditureAdapter : RecyclerView.Adapter<IncomeExpenditureAdapter.ViewHolder>, IncomeExpenditureTouchHelperCallback{
 
     var incomeExpenditureList = mutableListOf<IncomeExpenditure>()
 
@@ -75,6 +77,15 @@ class IncomeExpenditureAdapter : RecyclerView.Adapter<IncomeExpenditureAdapter.V
         var tvPrice = itemView.tvPrice
         var tvType = itemView.tvType
         var btnDelet = itemView.btnDelete
+    }
+
+    override fun onDismissed(position: Int) {
+        deleteItem(position)
+    }
+
+    override fun onItemMoved(fromPosition: Int, toPosition: Int) {
+        Collections.swap(incomeExpenditureList, fromPosition, toPosition)
+        notifyItemMoved(fromPosition, toPosition)
     }
 
 }

@@ -3,11 +3,13 @@ package com.example.incomeexpenditure
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.incomeexpenditure.adapter.IncomeExpenditureAdapter
 import com.example.incomeexpenditure.data.AppDatabase
 import com.example.incomeexpenditure.data.IncomeExpenditure
 import com.example.incomeexpenditure.databinding.ActivityScrollingBinding
 import com.example.incomeexpenditure.dialog.IncomeExpenditureDialog
+import com.example.incomeexpenditure.touch.IncomeExpenditureTouchCallback
 import kotlinx.android.synthetic.main.activity_scrolling.*
 
 
@@ -37,7 +39,7 @@ private lateinit var binding: ActivityScrollingBinding
 
         fabDeleteAll.setOnClickListener {
             Thread {
-                var incomeList = AppDatabase.getInstance(this@ScrollingActivity).incomeExpenditureDAO().deleteAll()
+                AppDatabase.getInstance(this@ScrollingActivity).incomeExpenditureDAO().deleteAll()
 
                 runOnUiThread {
                     initRecyclerView()
@@ -55,6 +57,10 @@ private lateinit var binding: ActivityScrollingBinding
             runOnUiThread {
                 adapterIncome = IncomeExpenditureAdapter(this, incomeList)
                 recyclerView.adapter = adapterIncome
+
+                val touchCallback = IncomeExpenditureTouchCallback(adapterIncome)
+                val itemTouchHelper = ItemTouchHelper(touchCallback)
+                itemTouchHelper.attachToRecyclerView(recyclerView)
 
             }
         }.start()
