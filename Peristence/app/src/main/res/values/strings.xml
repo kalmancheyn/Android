@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Peristence</string>
+    <string name="shared_preference_key">com.example.persistence.SHARED_PREFERENCE_KEY</string>
+</resources>
