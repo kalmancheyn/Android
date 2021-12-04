@@ -103,7 +103,6 @@ class TicTacToeView(context: Context?, attrs: AttributeSet?) : View(context, att
             val tY = event.y.toInt() / (height / 5)
             if (tX < 5 && tY < 5 && TicTacToeModel.getFieldContent(tX, tY) == TicTacToeModel.EMPTY) {
                 TicTacToeModel.setFieldContent(tX, tY, TicTacToeModel.getNextPlayer())
-                //itt érdemes vizsgálni hogy van e győztes
                 if (TicTacToeModel.checkWinner()) {
                     if (boolWin) {
                         var winner: String

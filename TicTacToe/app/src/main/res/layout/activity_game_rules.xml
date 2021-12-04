@@ -19,7 +19,7 @@
         android:layout_margin="20sp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="- A Kör illetve Iksz cstája\n- Az nyer, akinek összegyűlik 5 egymás mellett\n"/>
+        android:text="@string/str_rules"/>
 
     <Button
         android:id="@+id/btnBack"
